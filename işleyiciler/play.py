@@ -85,7 +85,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
 @Client.on_message(command("play") & other_filters)
 async def play(_, message: Message):
 
-    lel = await message.reply("🔄 memproses lagu...")
+    lel = await message.reply("🔄 Şarkı işleniyor...")
     sender_id = message.from_user.id
     sender_name = message.from_user.first_name
 
@@ -93,8 +93,8 @@ async def play(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        text="🌺 CHANNEL",
-                        url="https://t.me/levinachannel")
+                        text="🌺 Gruba özel bot",
+                        url="https://t.me/ucretlibotlar")
                 ],[
                     InlineKeyboardButton("🗑 Close",'cls') 
                    
@@ -108,7 +108,7 @@ async def play(_, message: Message):
     if audio:
         if round(audio.duration / 60) > DURATION_LIMIT:
             raise DurationLimitError(
-                f"❌ Video dengan durasi lebih dari {DURATION_LIMIT} minute(s) tidak dapat dimainkan!"
+                f"❌ 🌠 Üzgünüm Elly  {DURATION_LIMIT} Dakikadan uzun videoları dinletemiyorum!"
             )
 
         file_name = get_file_name(audio)
@@ -121,8 +121,8 @@ async def play(_, message: Message):
                 [
                     [
                         InlineKeyboardButton(
-                            text="🌺 CHANNEL",
-                            url=f"https://t.me/levinachannel")
+                            text="🌺 Kendinize Bot yaptırmak",
+                            url=f"https://t.me/Ucretlibotlar")
 
                     ]
                 ]
@@ -150,8 +150,8 @@ async def play(_, message: Message):
                     [
                         [
                             InlineKeyboardButton(
-                                text="🌺 CHANNEL",
-                                url=f"https://t.me/levinachannel")
+                                text="🌺 KENDİNİZE BOT YAPTIRMAK",
+                                url=f"https://t.me/Ucretlibotlar")
 
                         ]
                     ]
@@ -165,8 +165,8 @@ async def play(_, message: Message):
                     [
                         [
                             InlineKeyboardButton(
-                                text="💬 GROUP",
-                                url=f"https://t.me/gcsupportbots")
+                                text="💬 DESTEK GRUBUM",
+                                url=f"https://t.me/Smailesi")
 
                         ]
                     ]
@@ -175,7 +175,7 @@ async def play(_, message: Message):
         await generate_cover(requested_by, title, views, duration, thumbnail)     
         file_path = await converter.convert(youtube.download(url))
     else:
-        await lel.edit("🔎 menemukan lagu...")
+        await lel.edit("🔎 şarkı arıyorum Elly...")
         sender_id = message.from_user.id
         user_id = message.from_user.id
         sender_name = message.from_user.first_name
@@ -186,7 +186,7 @@ async def play(_, message: Message):
         for i in message.command[1:]:
             query += ' ' + str(i)
         print(query)
-        await lel.edit("🎵 memutar lagu...")
+        await lel.edit("🎵 Şarkı işleniyor elly...")
         ydl_opts = {"format": "bestaudio[ext=m4a]"}
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
@@ -203,7 +203,7 @@ async def play(_, message: Message):
 
         except Exception as e:
             lel.edit(
-                "❌ lagu tidak ditemukan.\n\ncoba cari dengan judul atau nama lagu yang lebih jelas."
+                "❌ Bana oynayacak birşey vermedin elly.\n\nLütfen bana oynatacak bişey ver elly."
             )
             print(str(e))
             return
@@ -212,8 +212,8 @@ async def play(_, message: Message):
                 [
                     [
                         InlineKeyboardButton(
-                            text="🌺 CHANNEL",
-                            url=f"https://t.me/levinachannel")
+                            text="🌺 KENDİ BOTUNUZU YAPTIRIN",
+                            url=f"https://t.me/Ucretlibotlar")
 
                     ]
                 ]
@@ -236,7 +236,7 @@ async def play(_, message: Message):
         photo="final.png",
         reply_markup=keyboard,
         caption=f"🏷 **Judul:** [{title[:60]}]({url})\n**⏱ Durasi:** {duration}\n" \
-                + f"💡 **Status:** Playing\n🎧 **Permintaan:** {requested_by}".format(
+                + f"💡 **Status:** Oynatılıyor\n🎧 **Elly seni çok seviyorum:** {requested_by}".format(
         message.from_user.mention()
         ),
     )
